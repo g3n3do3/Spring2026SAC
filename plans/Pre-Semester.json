@@ -1,0 +1,12 @@
+{
+  "date": "2026-02-07",
+  "week": "Pre-Semester",
+  "primary_priority": "Complete Strang 1.1\u20131.3 before semester starts in 3 days.",
+  "secondary_tasks": [
+    "Read Strang 1.1\u20131.3 \u2014 Ax=b, Gaussian elimination, geometry",
+    "Solve 2\u20133 practice problems per section by hand",
+    "Connect to ML: representing features and solving systems"
+  ],
+  "total_study_time_minutes": 90,
+  "burnout_check": "Safe. 90 minutes per week is sustainable."
+}
