@@ -4,7 +4,7 @@ Primary Academic Priority:
 Complete Strang 1.1–1.3 before semester starts in 3 days.
 
 Secondary Tasks:
-* Read Strang 1.1–1.3 — Ax=b, Gaussian elimination, geometry
+* Read: 1.1 Introduction, 1.2 Geometry of Linear Equations, 1.3 Gaussian Elimination
 * Solve 2–3 practice problems per section by hand
 * Connect to ML: representing features and solving systems
 

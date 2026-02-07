@@ -1,7 +1,14 @@
 """
 Study Execution Engine
 Generates weekly study plans for Spring 2026 at Santa Ana College.
-Aligned to Strang's Linear Algebra and ML readiness by Summer 2026.
+Aligned to Strang's Linear Algebra and Its Applications (4th Ed).
+
+Certificate: Artificial Intelligence (SAC.CMAI.CA) — 15 units
+  CMPR 114 Python Programming              (Spring 2026)
+  CMPR 115 Python for Data Analytics       (Spring 2026)
+  CMPR 158 Intro to Artificial Intelligence (TBD)
+  CMPR 159 Intro to Machine Learning       (TBD)
+  CMPR 169 SQL                             (TBD)
 """
 
 import json
@@ -11,11 +18,17 @@ from datetime import date, timedelta
 SEMESTER_START = date(2026, 2, 10)
 SEMESTER_END = date(2026, 6, 2)
 
+# Strang 4th Edition — verified section titles
 PHASES = [
     {
         "name": "Pre-Semester",
         "weeks": (None,),  # special: before week 1
         "strang_sections": "1.1–1.3",
+        "section_titles": [
+            "1.1 Introduction",
+            "1.2 Geometry of Linear Equations",
+            "1.3 Gaussian Elimination",
+        ],
         "focus": "Ax=b, Gaussian elimination, geometry",
         "ml_meaning": "representing features and solving systems",
     },
@@ -23,6 +36,15 @@ PHASES = [
         "name": "Phase 1",
         "weeks": (1, 2, 3, 4),
         "strang_sections": "1.4–1.7, 2.1–2.3",
+        "section_titles": [
+            "1.4 Matrix Notation and Matrix Multiplication",
+            "1.5 Triangular Factors and Row Exchanges",
+            "1.6 Inverses and Transposes",
+            "1.7 Special Matrices and Applications",
+            "2.1 Vector Spaces and Subspaces",
+            "2.2 Solution of m Equations in n Unknowns",
+            "2.3 Linear Independence, Basis, and Dimension",
+        ],
         "focus": "matrices, inverses, vector spaces, independence",
         "ml_meaning": "vectors as data, redundancy, solvability",
     },
@@ -30,6 +52,14 @@ PHASES = [
         "name": "Phase 2",
         "weeks": (5, 6, 7, 8),
         "strang_sections": "2.4–2.6, 3.1–3.3",
+        "section_titles": [
+            "2.4 The Four Fundamental Subspaces",
+            "2.5 Networks and Incidence Matrices",
+            "2.6 Linear Transformations",
+            "3.1 Perpendicular Vectors and Orthogonal Subspaces",
+            "3.2 Inner Products and Projections onto Lines",
+            "3.3 Least Squares Approximations",
+        ],
         "focus": "subspaces, orthogonality, projections, least squares",
         "ml_meaning": "linear regression, best-fit prediction",
     },
@@ -37,6 +67,11 @@ PHASES = [
         "name": "Phase 3",
         "weeks": (9, 10, 11, 12),
         "strang_sections": "5.1–5.3",
+        "section_titles": [
+            "5.1 Introduction (Eigenvalues)",
+            "5.2 Diagonalization of a Matrix",
+            "5.3 Difference Equations and Powers A^k",
+        ],
         "focus": "eigenvalues, eigenvectors, diagonalization",
         "ml_meaning": "PCA, spectral structure, dynamics",
     },
@@ -44,6 +79,11 @@ PHASES = [
         "name": "Phase 4",
         "weeks": (13, 14, 15, 16),
         "strang_sections": "6.1–6.3",
+        "section_titles": [
+            "6.1 Minima, Maxima, and Saddle Points",
+            "6.2 Tests for Positive Definiteness",
+            "6.3 The Singular Value Decomposition",
+        ],
         "focus": "positive definite matrices, SVD",
         "ml_meaning": "embeddings, compression, large-scale PCA",
     },
@@ -80,6 +120,8 @@ def generate_plan(today=None):
     week = get_semester_week(today)
     phase = get_phase(week)
 
+    titles = phase["section_titles"]
+
     if week == 0:
         week_label = "Pre-Semester"
         days_until = (SEMESTER_START - today).days
@@ -88,29 +130,26 @@ def generate_plan(today=None):
             f"starts in {days_until} day{'s' if days_until != 1 else ''}."
         )
         tasks = [
-            f"Read Strang {phase['strang_sections']} — {phase['focus']}",
+            f"Read: {', '.join(titles)}",
             "Solve 2–3 practice problems per section by hand",
             f"Connect to ML: {phase['ml_meaning']}",
         ]
     else:
         week_label = f"Week {week} ({phase['name']})"
-        sections = phase["strang_sections"]
-        section_list = [s.strip() for s in sections.split(",")]
         # Distribute sections across phase weeks
         phase_weeks = list(phase["weeks"])
         pos = phase_weeks.index(week)
         total = len(phase_weeks)
-        if len(section_list) > 1:
-            idx = min(pos * len(section_list) // total, len(section_list) - 1)
-            current_section = section_list[idx]
-        else:
-            current_section = section_list[0]
+        # Map week position to section range
+        start_idx = pos * len(titles) // total
+        end_idx = (pos + 1) * len(titles) // total
+        week_titles = titles[start_idx:end_idx] or [titles[min(pos, len(titles) - 1)]]
 
         priority = (
-            f"Continue Strang {current_section} — {phase['focus']}."
+            f"Work through {week_titles[0].split(' ', 1)[0]} — {phase['focus']}."
         )
         tasks = [
-            f"Read and work through Strang {current_section}",
+            f"Read: {', '.join(week_titles)}",
             f"Relate to ML: {phase['ml_meaning']}",
             "Apply concepts in CMPR 114/115 Python assignments where possible",
         ]

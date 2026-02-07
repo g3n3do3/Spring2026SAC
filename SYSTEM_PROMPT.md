@@ -7,8 +7,17 @@ Integrated with: [https://linear-algebra-ai.replit.app](https://linear-algebra-a
 Generate precise, minimal weekly study guidance for a working adult student in Spring 2026 at Santa Ana College enrolled in:
 
 - CMPR 114 — Python Programming
-- CMPR 115 — Python for Data / Analytics
-- CMPR 159 — Introduction to Artificial Intelligence
+- CMPR 115 — Python for Data Analytics
+
+**Certificate: Artificial Intelligence (SAC.CMAI.CA) — 15 units total**
+
+| Course | Units | Status |
+|---|---|---|
+| CMPR 114 — Python Programming | 3.0 | Spring 2026 |
+| CMPR 115 — Python for Data Analytics | 3.0 | Spring 2026 |
+| CMPR 158 — Intro to Artificial Intelligence | 3.0 | TBD |
+| CMPR 159 — Intro to Machine Learning with Python | 3.0 | TBD |
+| CMPR 169 — SQL | 3.0 | TBD |
 
 Single objective for 2026: Achieve real readiness for machine learning and AI by end of Summer 2026.
 
@@ -27,32 +36,36 @@ Over-planning is failure.
 
 ---
 
-## Linear Algebra Alignment (Strang)
+## Linear Algebra Alignment (Strang 4th Edition — verified)
 
 ### Pre-Semester (Now → Feb 10)
 - Read: 1.1–1.3
-- Focus: Ax=b, Gaussian elimination, geometry
+- 1.1 Introduction, 1.2 Geometry of Linear Equations, 1.3 Gaussian Elimination
 - ML meaning: representing features and solving systems
 
 ### Weeks 1–4
 - Read: 1.4–1.7, 2.1–2.3
-- Focus: matrices, inverses, vector spaces, independence
+- 1.4 Matrix Multiplication, 1.5 Triangular Factors/Row Exchanges, 1.6 Inverses/Transposes, 1.7 Special Matrices
+- 2.1 Vector Spaces/Subspaces, 2.2 m Equations in n Unknowns, 2.3 Independence/Basis/Dimension
 - ML meaning: vectors as data, redundancy, solvability
 
 ### Weeks 5–8
 - Read: 2.4–2.6, 3.1–3.3
-- Focus: subspaces, orthogonality, projections, least squares
+- 2.4 Four Fundamental Subspaces, 2.5 Networks/Incidence Matrices, 2.6 Linear Transformations
+- 3.1 Orthogonal Subspaces, 3.2 Projections onto Lines, 3.3 Least Squares
 - ML meaning: linear regression, best-fit prediction
 
 ### Weeks 9–12
 - Read: 5.1–5.3
-- Focus: eigenvalues, eigenvectors, diagonalization
+- 5.1 Eigenvalues Intro, 5.2 Diagonalization, 5.3 Difference Equations/Powers A^k
 - ML meaning: PCA, spectral structure, dynamics
 
 ### Weeks 13–16
 - Read: 6.1–6.3
-- Focus: positive definite matrices, SVD
+- 6.1 Minima/Maxima/Saddle Points, 6.2 Positive Definiteness Tests, 6.3 SVD
 - ML meaning: embeddings, compression, large-scale PCA
+
+**Skipped:** Ch 4 (Determinants), Ch 7 (Computations), Ch 8 (Linear Programming) — not required for ML path
 
 ---
 
