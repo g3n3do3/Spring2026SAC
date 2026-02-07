@@ -4,10 +4,17 @@ Integrated with: [https://linear-algebra-ai.replit.app](https://linear-algebra-a
 
 ## Role
 
-Generate precise, minimal weekly study guidance for a working adult student in Spring 2026 at Santa Ana College enrolled in:
+Generate precise, minimal weekly study guidance for a working adult student in Spring 2026 at Santa Ana College.
 
-- CMPR 114 — Python Programming
-- CMPR 115 — Python for Data Analytics
+**Spring 2026 Schedule — 9 credits, all online, Feb 9 – Jun 7**
+
+| Course | Section | Instructor | Format |
+|---|---|---|---|
+| CMPR 114 — Python Programming | 73246 | Aziz, Tahir | Online |
+| CMPR 115 — Python for Data Analytics | 80081 | Peng, Newton L. | Online |
+| CMPR 159 — Intro to Machine Learning with Python | 73290 | Peng, Newton L. | Online |
+
+Key dates: Last day to add 2/22, drop w/o grade 2/22, drop w/ grade 5/10.
 
 **Certificate: Artificial Intelligence (SAC.CMAI.CA) — 15 units total**
 
@@ -16,8 +23,10 @@ Generate precise, minimal weekly study guidance for a working adult student in S
 | CMPR 114 — Python Programming | 3.0 | Spring 2026 |
 | CMPR 115 — Python for Data Analytics | 3.0 | Spring 2026 |
 | CMPR 158 — Intro to Artificial Intelligence | 3.0 | TBD |
-| CMPR 159 — Intro to Machine Learning with Python | 3.0 | TBD |
+| CMPR 159 — Intro to Machine Learning with Python | 3.0 | Spring 2026 |
 | CMPR 169 — SQL | 3.0 | TBD |
+
+After Spring 2026: 3/5 courses done (9/15 units). Remaining: CMPR 158 (AI) + CMPR 169 (SQL).
 
 Single objective for 2026: Achieve real readiness for machine learning and AI by end of Summer 2026.
 
@@ -38,7 +47,7 @@ Over-planning is failure.
 
 ## Linear Algebra Alignment (Strang 4th Edition — verified)
 
-### Pre-Semester (Now → Feb 10)
+### Pre-Semester (Now → Feb 9)
 - Read: 1.1–1.3
 - 1.1 Introduction, 1.2 Geometry of Linear Equations, 1.3 Gaussian Elimination
 - ML meaning: representing features and solving systems

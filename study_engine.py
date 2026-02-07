@@ -4,19 +4,21 @@ Generates weekly study plans for Spring 2026 at Santa Ana College.
 Aligned to Strang's Linear Algebra and Its Applications (4th Ed).
 
 Certificate: Artificial Intelligence (SAC.CMAI.CA) — 15 units
-  CMPR 114 Python Programming              (Spring 2026)
-  CMPR 115 Python for Data Analytics       (Spring 2026)
+  CMPR 114 Python Programming              (Spring 2026 — Aziz)
+  CMPR 115 Python for Data Analytics       (Spring 2026 — Peng)
+  CMPR 159 Intro to Machine Learning       (Spring 2026 — Peng)
   CMPR 158 Intro to Artificial Intelligence (TBD)
-  CMPR 159 Intro to Machine Learning       (TBD)
   CMPR 169 SQL                             (TBD)
+
+Spring 2026: 9 credits, all online, Feb 9 – Jun 7
 """
 
 import json
 from datetime import date, timedelta
 
 # Spring 2026 SAC semester
-SEMESTER_START = date(2026, 2, 10)
-SEMESTER_END = date(2026, 6, 2)
+SEMESTER_START = date(2026, 2, 9)
+SEMESTER_END = date(2026, 6, 7)
 
 # Strang 4th Edition — verified section titles
 PHASES = [
@@ -151,7 +153,7 @@ def generate_plan(today=None):
         tasks = [
             f"Read: {', '.join(week_titles)}",
             f"Relate to ML: {phase['ml_meaning']}",
-            "Apply concepts in CMPR 114/115 Python assignments where possible",
+            "Apply concepts in CMPR 114/115/159 coursework where possible",
         ]
 
     plan = {

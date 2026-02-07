@@ -1,7 +1,7 @@
 **Pre-Semester** — 2026-02-07
 
 Primary Academic Priority:
-Complete Strang 1.1–1.3 before semester starts in 3 days.
+Complete Strang 1.1–1.3 before semester starts in 2 days.
 
 Secondary Tasks:
 * Read: 1.1 Introduction, 1.2 Geometry of Linear Equations, 1.3 Gaussian Elimination
