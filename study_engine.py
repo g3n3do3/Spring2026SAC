@@ -189,6 +189,93 @@ def format_plan(plan):
     return "\n".join(lines)
 
 
+def format_html(plan):
+    """Generate a standalone HTML page for the current plan."""
+    week = get_semester_week(date.fromisoformat(plan["date"]))
+    total_weeks = 16
+    progress_pct = 0 if week == 0 else round(week / total_weeks * 100)
+
+    phase = get_phase(week)
+    roadmap_html = ""
+    for p in PHASES:
+        is_current = p["name"] == phase["name"]
+        cls = "current" if is_current else ""
+        roadmap_html += (
+            f'<div class="phase {cls}">'
+            f'<strong>{p["name"]}</strong><br>'
+            f'Strang {p["strang_sections"]}<br>'
+            f'<span class="ml">ML: {p["ml_meaning"]}</span>'
+            f'</div>\n'
+        )
+
+    tasks_html = "".join(f"<li>{t}</li>" for t in plan["secondary_tasks"])
+
+    return f"""<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Spring 2026 SAC — Study Plan</title>
+<style>
+  * {{ margin: 0; padding: 0; box-sizing: border-box; }}
+  body {{ font-family: -apple-system, system-ui, sans-serif; background: #0d1117;
+         color: #c9d1d9; max-width: 640px; margin: 0 auto; padding: 24px 16px; }}
+  h1 {{ font-size: 1.3rem; color: #58a6ff; margin-bottom: 4px; }}
+  .date {{ color: #8b949e; font-size: 0.85rem; margin-bottom: 20px; }}
+  .card {{ background: #161b22; border: 1px solid #30363d; border-radius: 8px;
+           padding: 16px; margin-bottom: 16px; }}
+  .card h2 {{ font-size: 1rem; color: #f0f6fc; margin-bottom: 8px; }}
+  .priority {{ color: #58a6ff; font-size: 1.05rem; }}
+  ul {{ padding-left: 20px; }}
+  li {{ margin-bottom: 4px; }}
+  .bar-bg {{ background: #21262d; border-radius: 6px; height: 8px; margin: 8px 0; }}
+  .bar-fill {{ background: #238636; height: 8px; border-radius: 6px; }}
+  .meta {{ display: flex; justify-content: space-between; font-size: 0.85rem; color: #8b949e; }}
+  .roadmap {{ display: flex; flex-direction: column; gap: 8px; }}
+  .phase {{ background: #21262d; border-radius: 6px; padding: 10px 12px; font-size: 0.85rem; }}
+  .phase.current {{ border-left: 3px solid #58a6ff; background: #1c2333; }}
+  .ml {{ color: #8b949e; font-size: 0.8rem; }}
+  .burnout {{ color: #238636; font-size: 0.85rem; }}
+  footer {{ margin-top: 24px; color: #484f58; font-size: 0.75rem; text-align: center; }}
+</style>
+</head>
+<body>
+<h1>{plan["week"]}</h1>
+<div class="date">Generated {plan["date"]}</div>
+
+<div class="card">
+  <h2>Priority</h2>
+  <p class="priority">{plan["primary_priority"]}</p>
+</div>
+
+<div class="card">
+  <h2>Tasks</h2>
+  <ul>{tasks_html}</ul>
+</div>
+
+<div class="card">
+  <h2>Semester Progress</h2>
+  <div class="bar-bg"><div class="bar-fill" style="width:{progress_pct}%"></div></div>
+  <div class="meta">
+    <span>Week {week} / {total_weeks}</span>
+    <span>{plan["total_study_time_minutes"]} min this week</span>
+  </div>
+</div>
+
+<div class="card">
+  <h2>Roadmap</h2>
+  <div class="roadmap">{roadmap_html}</div>
+</div>
+
+<div class="card">
+  <p class="burnout">{plan["burnout_check"]}</p>
+</div>
+
+<footer>Spring 2026 SAC &middot; AI Certificate &middot; Auto-updated weekly</footer>
+</body>
+</html>"""
+
+
 def save_plan(plan, path="plans"):
     """Save plan to a markdown file and JSON."""
     import os
@@ -208,8 +295,25 @@ def save_plan(plan, path="plans"):
     return md_path, json_path
 
 
-if __name__ == "__main__":
+def build_site(output_dir="site"):
+    """Build the GitHub Pages site."""
+    import os
+    os.makedirs(output_dir, exist_ok=True)
     plan = generate_plan()
-    print(format_plan(plan))
-    md_path, json_path = save_plan(plan)
-    print(f"\nSaved to: {md_path}, {json_path}")
+    html = format_html(plan)
+    index_path = os.path.join(output_dir, "index.html")
+    with open(index_path, "w") as f:
+        f.write(html)
+    return index_path
+
+
+if __name__ == "__main__":
+    import sys
+    if len(sys.argv) > 1 and sys.argv[1] == "build-site":
+        path = build_site()
+        print(f"Site built: {path}")
+    else:
+        plan = generate_plan()
+        print(format_plan(plan))
+        md_path, json_path = save_plan(plan)
+        print(f"\nSaved to: {md_path}, {json_path}")
